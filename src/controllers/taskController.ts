@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import {  addTask, getTasks, removeTask} from "../services/tasksData";
+import {  addTask, getTasks, removeTask, updateTask} from "../services/tasksData";
 
 
 export const getAllTasks = async (req:Request,res:Response) =>{
@@ -42,3 +42,18 @@ export const removeTheTask = async (req:Request, res: Response) =>{
     }
 }
 
+
+export const updateTheTask = async(req:Request,res:Response) =>{
+    try{
+        const id = req.params.id
+        const data = req.body
+        const updateData = await updateTask(id,data)
+        if(!updateData){
+           return res.status(400).json({message:"it doesn't update please check once"})
+        }else{
+            return res.status(200).json({message:"successfully update the data"})
+        }
+    }catch{
+        return res.status(404).json({message:"bad request.."})
+    }
+}
