@@ -1,3 +1,4 @@
 node_modules/
 dist/
 firebaseToken.json
+ .DS_Store/
