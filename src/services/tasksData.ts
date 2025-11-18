@@ -32,4 +32,13 @@ export const removeTask = async (id: string) =>{
     return task
 }
 
+export const updateTask = async (id:string,data:TaskType) =>{
+   const tasks = await collectionOfTasks.get()
+   const task = tasks.docs.find(doc=>doc.id === id)
+   if(!task){
+     return "the id didn't match with any id"
+   }
+   return collectionOfTasks.doc(id).update(data)
+}
+
 
