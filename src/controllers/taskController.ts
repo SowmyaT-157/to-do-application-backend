@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import {  addTask, getTasks, TaskType } from "../services/tasksData";
+import {  addTask, getTasks, removeTask} from "../services/tasksData";
 
 
 export const getAllTasks = async (req:Request,res:Response) =>{
@@ -26,4 +26,19 @@ export const addTheNewTask = async (req: Request, res: Response) => {
     return res.status(400).json({ message: "task not created", error });
   }
 };  
+
+export const removeTheTask = async (req:Request, res: Response) =>{
+    try{
+        const id = req.params.id
+        const deleteTask = await removeTask(id.toString())
+        if(!id){
+            return res.status(404).json({message:"id didn't match any id"})
+        }else{
+        return res.status(200).json({message:"successfully delete the task",deleteTask})
+        }
+    }
+    catch{
+        return res.status(400).json({message:"task didn`t deleted"})
+    }
+}
 
