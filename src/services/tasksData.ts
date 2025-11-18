@@ -24,3 +24,12 @@ export const addTask = async (data: TaskType) => {
   console.log(newUser);
   return data;
 };
+
+
+export const removeTask = async (id: string) =>{
+    const task = await collectionOfTasks.doc(id).delete()
+    console.log("successfully delete the task")
+    return task
+}
+
+
