@@ -20,7 +20,6 @@ export const addTheNewTask = async (req: Request, res: Response) => {
     const taskData = req.body;
     console.log("Please give me taskdata...", taskData);
     const task = await addTask(taskData);
-    console.log("please show ...",task);
     return res.status(201).json({message:"successfully add the task"});
   } catch (error) {
     return res.status(400).json({ message: "task not created", error });
