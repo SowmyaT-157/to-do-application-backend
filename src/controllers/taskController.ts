@@ -50,7 +50,7 @@ export const updateTheTask = async(req:Request,res:Response) =>{
         if(!updateData){
            return res.status(400).json({message:"it doesn't update please check once"})
         }else{
-            return res.status(200).json({message:"successfully update the data"})
+            return res.status(200).json({message:"successfully update the data",data})
         }
     }catch{
         return res.status(404).json({message:"bad request.."})
